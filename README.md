@@ -1,5 +1,7 @@
 # Hede Thinking Skill Sharing Package (hede-thinking · v2.1)
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE) [![Live Demo](https://img.shields.io/badge/Demo-Live-blue.svg)](https://yu-star1.github.io/hede-thinking/) [![Version](https://img.shields.io/badge/version-v2.1-purple.svg)](https://github.com/yu-star1/hede-thinking)
+
 > Make your AI think logically and close with a plain-language version — one file, drop it into any AI.
 >
 > **Naming note**: Hede Language is the formal name of this language specification; `hede-thinking` is this skill's identifier — it is Hede Language's **thinking-domain application** (teaches machines how to think), hence the name "Hede Thinking".
@@ -66,3 +68,19 @@ Hede Language is the proper name of the language specification; `hede-thinking` 
 - **v2.1** (2026-11-20): Closing-output layer upgrade — verdict table (multi-step tasks must produce a comparison table at closing) + eli5 plain-language version (trigger words `$eli5` / `plain-language version`).
 - v2.0 (2026-11-01): Skill whitepaper finalized + HEDE-MEMO three-level memory adaptation.
 - Data source: All readings come from real-world tests using pre-registered criteria sets (success criteria are fixed in writing before the run to prevent retrofitting), see `SKILL.md` §5 and §10 for details.
+
+## License
+
+Released under the **MIT License** — see [LICENSE](LICENSE).
+
+You are free to **use, copy, modify, merge, publish, distribute, sublicense, and/or sell** copies of this project, for personal or commercial purposes. The only requirement is to keep the copyright notice and this permission notice in any copy or substantial portion. No warranty is provided.
+
+In plain terms: take it, use it, change it, share it, even build a product on it — just keep the attribution line.
+
+## Contributing
+
+Issues and pull requests are welcome. If you find a wording issue in the translation, have an idea for a new section, or want to add a language edition, open an issue or submit a PR.
+
+## Star this repo
+
+If this project helped you, a ⭐ star is the easiest way to support it and help others discover it.
