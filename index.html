@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hede Language · Teach Your AI to Think Logically</title>
+<title>Hede Language · 合德语思考</title>
 <style>
   :root{
     --ink:#1c2333; --sub:#5a6478; --line:#e4e8f2; --bg:#f6f8fc;
@@ -15,7 +15,6 @@
   body{font-family:"Microsoft YaHei","PingFang SC","Segoe UI",sans-serif;color:var(--ink);background:var(--bg);line-height:1.75}
   .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
 
-  /* Hero */
   .hero{background:linear-gradient(135deg,#101c3f 0%,#1e2a5e 55%,#3a2a7a 100%);color:#fff;padding:72px 0 64px;text-align:center}
   .hero h1{font-size:44px;letter-spacing:2px;margin-bottom:10px}
   .hero h1 .en{display:block;font-size:18px;font-weight:400;letter-spacing:6px;opacity:.75;margin-top:8px}
@@ -26,14 +25,12 @@
   .badge b{font-size:22px;margin-right:8px}
   .hero-cta{margin-top:30px;font-size:14px;opacity:.8}
 
-  /* Sections */
   section{padding:56px 0}
   section:nth-of-type(even){background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
   h2{font-size:28px;margin-bottom:8px;text-align:center}
   h2 .hl{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
   .sec-sub{text-align:center;color:var(--sub);font-size:15px;margin-bottom:36px}
 
-  /* Problem cards */
   .grid{display:grid;gap:18px}
   .g3{grid-template-columns:repeat(3,1fr)}
   .g4{grid-template-columns:repeat(4,1fr)}
@@ -45,7 +42,6 @@
   .pcard .fix{color:var(--ok);font-size:14px;margin-top:6px}
   .pcard .fix::before{content:"→ ";font-weight:700}
 
-  /* Compare */
   .compare{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:8px}
   @media(max-width:860px){.compare{grid-template-columns:1fr}}
   .bubble{border-radius:14px;padding:20px 22px;font-size:14.5px}
@@ -59,14 +55,12 @@
   .eli5box{margin-top:22px;background:#f0fdf7;border:1px solid #b7e6cd;border-radius:14px;padding:18px 22px;font-size:14.5px}
   .eli5box b.t{color:var(--ok)}
 
-  /* Bench cards */
   .bcard{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px 22px;text-align:center;position:relative;overflow:hidden}
   .bcard::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--grad)}
   .bcard .num{font-size:34px;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1.2}
   .bcard .lab{font-size:15px;font-weight:700;margin-top:8px}
   .bcard .note{font-size:12.5px;color:var(--sub);margin-top:8px;line-height:1.6}
 
-  /* Steps */
   .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
   @media(max-width:860px){.steps{grid-template-columns:1fr}}
   .step{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px}
@@ -75,27 +69,32 @@
   .step p{font-size:13.5px;color:var(--sub)}
   .step .time{font-size:12px;color:var(--purple);font-weight:700;margin-top:8px}
 
-  /* Criteria */
   .crit{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 26px;font-size:14.5px}
   .crit li{margin:7px 0 7px 18px}
   .crit .j{font-weight:700;color:var(--purple)}
 
-  /* Copy box */
   .copybox textarea{width:100%;min-height:210px;background:#101c3f;color:#dce6ff;border:1px solid #2c3d78;border-radius:14px;padding:18px;font-family:Consolas,Menlo,monospace;font-size:13px;line-height:1.7;resize:vertical}
   .copybtn{margin-top:12px;background:var(--grad);color:#fff;border:none;border-radius:10px;padding:11px 30px;font-size:15px;font-weight:700;cursor:pointer}
   .copybtn:hover{opacity:.9}
   .copytip{font-size:12.5px;color:var(--sub);margin-top:8px}
 
-  /* Poster slot */
   .poster{border:2px dashed #b9c4e0;border-radius:16px;min-height:300px;display:flex;align-items:center;justify-content:center;color:var(--sub);font-size:15px;background:#eef1f9;text-align:center;padding:30px}
+  .poster.has-img{border:none;background:transparent;padding:0}
+  .poster img{max-width:100%;height:auto;max-height:1100px;border-radius:12px;display:block;margin:0 auto;box-shadow:0 6px 24px rgba(28,35,51,.14)}
 
   footer{background:#101c3f;color:#8fa0cc;text-align:center;font-size:13px;padding:26px 0}
   footer b{color:#dce6ff}
+
+  .lang-switch{position:fixed;top:16px;right:16px;z-index:999;background:#fff;border:1px solid var(--line);border-radius:24px;padding:9px 20px;font-size:14px;font-weight:700;color:var(--blue);cursor:pointer;box-shadow:0 2px 12px rgba(28,35,51,.14)}
+  .lang-switch:hover{background:var(--bg)}
 </style>
 </head>
 <body>
 
-<!-- ============ HERO ============ -->
+<button class="lang-switch" id="lang-btn" onclick="toggleLang()">中文</button>
+
+<!-- ==================== ENGLISH ==================== -->
+<div id="page-en">
 <div class="hero">
   <div class="wrap">
     <h1>Hede Language<span class="en">HEDE LANGUAGE</span></h1>
@@ -111,7 +110,6 @@
   </div>
 </div>
 
-<!-- ============ Problems ============ -->
 <section>
   <div class="wrap">
     <h2>AI's <span class="hl">six chronic problems</span>, and how Hede Language fixes each one</h2>
@@ -127,7 +125,6 @@
   </div>
 </section>
 
-<!-- ============ Comparison example ============ -->
 <section>
   <div class="wrap">
     <h2>At a glance: <span class="hl">two ways of thinking</span> about the same small task</h2>
@@ -159,7 +156,6 @@ and you can rest assured.</pre>
   </div>
 </section>
 
-<!-- ============ Benchmarks ============ -->
 <section>
   <div class="wrap">
     <h2>Measured <span class="hl">report card</span></h2>
@@ -172,13 +168,12 @@ and you can rest assured.</pre>
       <div class="bcard"><div class="num">0→5/5</div><div class="lab">Opening-language fix</div><div class="note">The problem of thinking opening in drifting English—after adding the skeleton reminder, Chinese openings 5/5</div></div>
       <div class="bcard"><div class="num">11× / 90×</div><div class="lab">Citation saves volume</div><div class="note">Reference-number citation saves about 11× compared with restating whole passages; a systematic citation scheme saves about 90×, with 100% archive equivalence</div></div>
       <div class="bcard"><div class="num">PASS</div><div class="lab">User final review</div><div class="note">Readability personally spot-checked and judged by the user (AI may not judge on its behalf): "the tags are very vivid"</div></div>
-      <div class="bcard"><div class="num">+3 tok/line</div><div class="lab">Cost accounted for honestly</div><div class="note">Overall increase &lt;5%—what it saves isn't tokens, it's the cost of trust; the content-word compression route was disproven in all four rounds of experiments, archived—do not retry</div></div>
+      <div class="bcard"><div class="num">+3 tok/行</div><div class="lab">Cost accounted for honestly</div><div class="note">Overall increase &lt;5%—what it saves isn't tokens, it's the cost of trust; the content-word compression route was disproven in all four rounds of experiments, archived—do not retry</div></div>
     </div>
     <p class="sec-sub" style="margin-top:24px">Honest disclaimer: the precise two-arm controlled trial for "percentage reduction in fabrication rate" is still underway—what Hede Language can promise today is: <b>every assertion carries an anchor, and fabrication can be detected on the spot</b> (unsupported-assertion detection 4/4 in the machine blind test).</p>
   </div>
 </section>
 
-<!-- ============ Onboarding tiers ============ -->
 <section>
   <div class="wrap">
     <h2>Three levels of integration: <span class="hl">from 5 minutes to engineering grade</span></h2>
@@ -191,7 +186,6 @@ and you can rest assured.</pre>
   </div>
 </section>
 
-<!-- ============ Self-verification criteria ============ -->
 <section>
   <div class="wrap">
     <h2>Don't trust the ads—<span class="hl">verify it yourself with five criteria</span></h2>
@@ -207,13 +201,12 @@ and you can rest assured.</pre>
   </div>
 </section>
 
-<!-- ============ Copy onboarding package ============ -->
 <section>
   <div class="wrap">
     <h2><span class="hl">Copy and use immediately</span>: minimal onboarding package</h2>
     <p class="sec-sub">Copy the whole thing, paste into your AI's custom instructions / System Prompt, and it takes effect as soon as you save</p>
     <div class="copybox">
-      <textarea id="prompt-pkg">【Thinking and Expression Specification: Hede Language Skeleton】
+      <textarea id="prompt-pkg-en">【Thinking and Expression Specification: Hede Language Skeleton】
 1. Put a behavior tag at the start of every paragraph of the thinking process: 📌 assertion (must carry an anchor: reading / number / path; if no anchor, mark 〔inference〕); 🔍 to-verify (must close the loop before closing out); 📚 to-record (record according to the memory-adaptation level, or note that it will not be recorded); ⚡ action (must write back the result). One thought, one tag.
 2. Use a numeric line for status progress: state: {n, done, pct}; use reference-number citation for pointing the way (→number), and do not restate content already referenced.
 3. Express the main text fully in Simplified Chinese; no whole paragraphs of English thinking (except code, code names, and proper nouns).
@@ -222,19 +215,18 @@ and you can rest assured.</pre>
 6. When I say "plain-language version/$eli5", produce a plain-language version: translate the conclusions into everyday wording (write the three states honestly: already present / added / on hold), and provide the three-piece deliverable rundown (name / location / one-line summary); no piling up jargon.
 7. Report failures honestly; test failures / skips / unverified items must be stated explicitly—no dressing them up in success language.
 8. Recording discipline: things that need remembering must be recorded in HEDE-MEMO format—four frontmatter fields (name: short hyphenated English name / description: one-line summary / type: user|feedback|project|reference) plus a body (feedback/project items include Why and How to apply, with related entries interlinked via [[name]]). If you have memory tools, use them; if you have a filesystem, write to the hede_memos/ directory (one md per entry + INDEX.md with one index line per entry); if you have neither, output a MEMO code block in the closing section for me to store on your behalf. Anything I have corrected you on must be recorded as feedback; existing memories on the same topic must only be updated, not duplicated.</textarea>
-      <button class="copybtn" onclick="copyPkg()">📋 Copy in one click</button>
+      <button class="copybtn" id="copybtn-en" onclick="copyPkg('en')">📋 Copy in one click</button>
       <div class="copytip">Paste and save → open a new chat → toss it a small task and see whether it starts attaching 📌🔍📚⚡. For the full specification (including three-level memory adaptation, glossary, and criteria), see SKILL.md.</div>
     </div>
   </div>
 </section>
 
-<!-- ============ Poster slot ============ -->
 <section>
   <div class="wrap">
     <h2><span class="hl">Promotional poster</span></h2>
-    <p class="sec-sub">The following is the poster slot (when deploying to the website, replace this spot with the poster image poster.png; see poster-prompt.md for the image-generation prompt)</p>
-    <div class="poster" id="poster-slot">
-      🖼 Poster slot placeholder<br><small>Replace at deployment with &lt;img src="poster.png" alt="Hede Language promotional poster"&gt;</small>
+    <p class="sec-sub">The finished promotional poster — generated with the prompts in poster-prompt.md</p>
+    <div class="poster has-img" id="poster-slot-en">
+      <img src="poster.jpg" alt="Hede Language promotional poster">
     </div>
   </div>
 </section>
@@ -245,17 +237,176 @@ and you can rest assured.</pre>
     All figures come from measurements against a pre-registered criteria sheet · this page can be deployed as a single file to any static site
   </div>
 </footer>
+</div>
+
+<!-- ==================== CHINESE ==================== -->
+<div id="page-zh" style="display:none">
+<div class="hero">
+  <div class="wrap">
+    <h1>合德语<span class="en">HEDE LANGUAGE</span></h1>
+    <p class="tagline">一个 skill，教你的（任意）AI 按逻辑思考：<b>每句结论可查证，失败如实报告，经验可积累，还能讲人话。</b></p>
+    <p class="sub">适用于任何大模型 / 编码代理 / 多智能体系统 · 一个文件接入 · 零依赖</p>
+    <div class="badges">
+      <div class="badge"><b>📌</b>断言必带锚</div>
+      <div class="badge"><b>🔍</b>待查必闭环</div>
+      <div class="badge"><b>📚</b>新知必落库</div>
+      <div class="badge"><b>⚡</b>行动必回填</div>
+    </div>
+    <p class="hero-cta">↓ 三分钟上手：复制一段提示词，或装一个 skill 文件 ↓</p>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <h2>AI 的 <span class="hl">六个老毛病</span>，合德语一一开方</h2>
+    <p class="sec-sub">这些场景你一定见过——问题不在模型笨，在没有"发言纪律"</p>
+    <div class="grid g3">
+      <div class="pcard"><div class="bad">含糊</div>哪句是确定的、哪句是猜的，听不出来<div class="fix">行为标签：每段先亮牌 📌🔍📚⚡</div></div>
+      <div class="pcard"><div class="bad">编造无法查证</div>"我验证过了"——然后没有下文<div class="fix">断言必带锚：读数 / 编号 / 路径</div></div>
+      <div class="pcard"><div class="bad">长对话翻车</div>引用过的内容反复重述，越抄越错<div class="fix">单号引用制：报编号，不背原文</div></div>
+      <div class="pcard"><div class="bad">失败被话术包装</div>"基本完成""总体符合"……<div class="fix">负结果如实关册：FAIL 也是成果</div></div>
+      <div class="pcard"><div class="bad">干完了听不懂</div>一堆术语砸脸上，还得追问三轮<div class="fix">eli5 讲人话：结论翻成大白话对照</div></div>
+      <div class="pcard"><div class="bad">聊完即忘</div>教过的东西，下个会话清零重学<div class="fix">HEDE-MEMO 落库：三级记忆适配</div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>一眼看懂：<span class="hl">同一个小任务</span>的两种思考</h2>
+    <p class="sec-sub">任务："帮我核一下这批账对不对"</p>
+    <div class="compare">
+      <div class="bubble bad">
+        <h4>😵 没有合德语</h4>
+        <pre>我已经完成了对这批账目的全面分析，仔细核验
+了所有数据。经过严格的检查，账目整体上没有
+问题，数据之间保持了良好的一致性，结论是可
+靠的，请您放心。</pre>
+      </div>
+      <div class="bubble good">
+        <h4>🧠 合德语思考</h4>
+        <pre><span class="tagline-tag">📌</span> 核对完成：47 行账合计零差（读数：
+   对账输出 total=0）
+<span class="tagline-tag">🔍</span> 抽查 3 笔大额记录 → 已逐笔对上原始
+   凭证（凭证号 1021 / 1044 / 1087）
+<span class="tagline-tag">📌</span>〔推断〕2 月一笔 88,000 元疑似重复
+   入账，待查原始单据
+<span class="tagline-tag">⚡</span> 已出对账表 report.csv，含逐行明细</pre>
+      </div>
+    </div>
+    <div class="eli5box">
+      <b class="t">💬 再说句人话（输入"讲人话"或 "$eli5" 触发）：</b>
+      账从头到尾对了一遍，一分钱不差；抽了三笔大额的，都和原始单据对得上；只有 2 月一笔 8 万 8 疑似记重了，还没来得及查实，先给你标出来了。
+    </div>
+    <p class="sec-sub" style="margin-top:26px">左边那句"您放心"，正是幻觉最好的藏身处；右边每句话都能顺着锚查到底。</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>实测<span class="hl">成绩单</span></h2>
+    <p class="sec-sub">全部数字出自预注册判据卷实测（实验前先写死成功标准，防事后找补）——含成本，如实呈现</p>
+    <div class="grid g4">
+      <div class="bcard"><div class="num">100%</div><div class="lab">结构遵守率</div><div class="note">试点任务 4/4 全合规（门槛 ≥80%），标签存在且语义匹配</div></div>
+      <div class="bcard"><div class="num">4/4</div><div class="lab">验收零返工</div><div class="note">全部任务验收一次通过，无因思考形态导致的返工或错漏</div></div>
+      <div class="bcard"><div class="num">12/12</div><div class="lab">机器盲测全对</div><div class="note">另一只 AI 盲测：骨架解析 4/4（去骨架全灭）· 判读占优 4/4 · 无支撑断言检测 4/4</div></div>
+      <div class="bcard"><div class="num">41.9→94.4%</div><div class="lab">有无规范对照</div><div class="note">未加载规范的窗结构合规率 41.88%（MiniMax 实测，27 窗零标签）；加载规范后 94.40%（GLM）——守纪律靠加载，不靠模型自觉</div></div>
+      <div class="bcard"><div class="num">0→5/5</div><div class="lab">开场语言修复</div><div class="note">思考开场漂英文的问题，加骨架提醒后中文开场 5/5</div></div>
+      <div class="bcard"><div class="num">11× / 90×</div><div class="lab">引用省体积</div><div class="note">单号引用对比整段重述省约 11×；成体系引用制省约 90×，档案等价率 100%</div></div>
+      <div class="bcard"><div class="num">PASS</div><div class="lab">使用者终审</div><div class="note">可读性由使用者亲眼抽查亲裁（AI 不得代裁）："标签非常形象"</div></div>
+      <div class="bcard"><div class="num">+3 tok/行</div><div class="lab">成本如实认账</div><div class="note">整体增量 &lt;5%——它省的不是 token，是信任成本；压缩内容词路线四轮实验全部证伪，已归档勿再试</div></div>
+    </div>
+    <p class="sec-sub" style="margin-top:24px">诚实声明：精确的"编造率下降百分比"双臂对照尚在进行中——合德语今天能承诺的是：<b>每句断言带锚，编造可当场检出</b>（机器盲测无支撑断言检测 4/4）。</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>三档接入：<span class="hl">从 5 分钟到工程级</span></h2>
+    <p class="sec-sub">任何 AI、任何宿主，都有明确入口</p>
+    <div class="steps">
+      <div class="step"><span class="lv">第一档 · 最小接入</span><h4>贴一段提示词</h4><p>把"最小接入包"整段贴进 AI 的自定义指令 / System Prompt。零代码即刻生效，无记忆设施的 AI 也会在收口时输出标准 MEMO 块。</p><div class="time">⏱ 5 分钟 · 任何 AI</div></div>
+      <div class="step"><span class="lv">第二档 · 自动提醒</span><h4>挂一个注入脚本</h4><p>宿主支持 hooks 类机制时，每次用户发消息轻推一句骨架提醒（会话前 3 次 + 30 分钟节流）。防长对话遗忘，与第一档叠加。</p><div class="time">⏱ 半小时 · 需 hooks</div></div>
+      <div class="step"><span class="lv">第三档 · 工程级</span><h4>写进治理层</h4><p>断言无锚即拦的输出门禁、引用编号注册表、收口对账自动检查、落库格式校验与重复合并——多智能体系统统一纪律。</p><div class="time">⏱ 按需 · 多智能体</div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>别信广告，<span class="hl">五条判据自己验</span></h2>
+    <p class="sec-sub">换任何模型、接任何宿主，都可以跑一遍（跑之前先把标准写死）</p>
+    <div class="crit">
+      <li><span class="j">J1 遵守率</span>：≥80% 试点任务思考段按规范组织（标签存在且语义匹配）</li>
+      <li><span class="j">J2 质量无回归</span>：验收一次通过率不劣于基线，无因思考形态导致的返工</li>
+      <li><span class="j">J3 体积如实</span>：标签增量方向与量级如实记录（预期轻微正，不设门槛）</li>
+      <li><span class="j">J4 使用者终审</span>：使用者亲眼抽查可读性主观裁决（AI 不得代裁）</li>
+      <li><span class="j">J5 换模型自检</span>：每次换模型后首窗实测骨架遵从率 ≥0.80 且标签行数 &gt;0 为 PASS——实测证明"遵从率 = 模型 × 是否加载规范"的乘积</li>
+    </div>
+    <p class="sec-sub" style="margin-top:20px">裁决口径：J1∧J2∧J4 过 = 可立；样本 3-5 个任务收满即裁；FAIL 如实归档，禁止换阈值刷量。</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2><span class="hl">复制即用</span>：最小接入包</h2>
+    <p class="sec-sub">整段复制，贴进你的 AI 的自定义指令 / System Prompt，保存即生效</p>
+    <div class="copybox">
+      <textarea id="prompt-pkg-zh">【思考与表达规范：合德语骨架】
+1. 思考过程每段行首挂行为标签：📌 断言（必带锚：读数/编号/路径，无锚标〔推断〕）；🔍 待查（收口前必闭环）；📚 要记（按记忆适配级落库或注明不落）；⚡ 行动（必回填结果）。一 thought 一标签。
+2. 状态进度用数值行：state: {n, done, pct}；指路用单号引用（→编号），引用过的内容不重述。
+3. 正文用简体中文完整表达，禁英文思考整段（代码/代号/专有名词除外）。
+4. 任务收尾必做收口对账段：📌 锚数 / 🔍 闭环 / 📚 落库清单 / ⚡ 回填，四行对完才算收口。
+5. 多步任务收口出定论表：| # | 你交给我的 | 结果与证据 | 状态 |——每行需求对一行结果，结果必带可核查锚，状态四值 ✅⚠️⛔🔄 如实。
+6. 我说"讲人话/$eli5"时出人话版：结论翻成人话对照（已有/补了/挂起三态写实），产出交代三件套（名/位置/一句话），禁术语堆砌。
+7. 失败如实报告，测试失败/跳过/未验证必须明说，禁成功话术包装。
+8. 落库纪律：需要记住的事按 HEDE-MEMO 格式落库——frontmatter 四字段（name 短横线英文名/description 一行摘要/type: user|feedback|project|reference）+正文（feedback/project 附 Why 与 How to apply，关联条目 [[name]] 互链）。有记忆工具走工具，有文件系统写 hede_memos/ 目录（每条一 md+INDEX.md 每条一行索引），都没有则在收口段输出 MEMO 代码块由我代存。使用者纠正过的话必落 feedback；已有同主题记忆只更新不重复。</textarea>
+      <button class="copybtn" id="copybtn-zh" onclick="copyPkg('zh')">📋 一键复制</button>
+      <div class="copytip">贴完保存 → 新开对话 → 丢个小任务看它是否开始挂 📌🔍📚⚡。完整规范（含三级记忆适配、术语表、判据）见 SKILL.md。</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2><span class="hl">宣传海报</span></h2>
+    <p class="sec-sub">成品宣传海报——生图提示词见 poster-prompt.md</p>
+    <div class="poster has-img" id="poster-slot-zh">
+      <img src="poster.jpg" alt="合德语宣传海报">
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <b>合德语思考 skill v2.1</b> · 2026-11-20 · 自包含零依赖 · 任何 LLM 智能体可用<br>
+    数字全部出自预注册判据卷实测 · 本页可整文件部署至任意静态站点
+  </div>
+</footer>
+</div>
 
 <script>
-function copyPkg(){
-  var t=document.getElementById('prompt-pkg');
-  t.select();t.setSelectionRange(0,999999);
-  var ok=false;
-  try{ok=document.execCommand('copy');}catch(e){ok=false;}
-  if(!ok&&navigator.clipboard){navigator.clipboard.writeText(t.value);ok=true;}
-  var b=document.querySelector('.copybtn');
-  b.textContent=ok?'✅ Copied—go paste it':'Please select and copy manually';
-  setTimeout(function(){b.textContent='📋 Copy to clipboard';},2200);
+var curLang = 'en';
+function toggleLang(){
+  curLang = curLang === 'en' ? 'zh' : 'en';
+  document.getElementById('page-en').style.display = curLang === 'en' ? '' : 'none';
+  document.getElementById('page-zh').style.display = curLang === 'zh' ? '' : 'none';
+  document.getElementById('lang-btn').textContent = curLang === 'en' ? '中文' : 'EN';
+  document.documentElement.lang = curLang === 'zh' ? 'zh-CN' : 'en';
+  window.scrollTo(0, 0);
+}
+function copyPkg(lang){
+  var t = document.getElementById('prompt-pkg-' + lang);
+  var b = document.getElementById('copybtn-' + lang);
+  t.select(); t.setSelectionRange(0, 999999);
+  var ok = false;
+  try { ok = document.execCommand('copy'); } catch(e) { ok = false; }
+  if (!ok && navigator.clipboard) { navigator.clipboard.writeText(t.value); ok = true; }
+  var msgOk = lang === 'zh' ? '✅ 已复制，去粘贴吧' : '✅ Copied—go paste it';
+  var msgFail = lang === 'zh' ? '请手动全选复制' : 'Please select and copy manually';
+  var msgIdle = lang === 'zh' ? '📋 一键复制' : '📋 Copy to clipboard';
+  b.textContent = ok ? msgOk : msgFail;
+  setTimeout(function(){ b.textContent = msgIdle; }, 2200);
 }
 </script>
 </body>

@@ -74,5 +74,5 @@ Text in Simplified Chinese, clear with no wrong characters, no other text anywhe
 
 ## Delivery and archiving
 
-- Suggested names for the generated base image and final image: `poster-base.png` (base image) / `poster.png` (final image)
-- Website deployment: put `poster.png` in this directory and replace the "poster placeholder" at the end of `hede-bench.html` with this image.
+- Suggested names for the generated base image and final image: `poster-base.png` (base image) / `poster.jpg` (final image)
+- Website deployment: put `poster.jpg` in this directory and replace the "poster placeholder" at the end of `hede-bench.html` with this image.
