@@ -24,7 +24,6 @@
 |---|---|
 | `SKILL.md` | **Main body**: complete specification of the Hede Thinking skill (v2.1, including verdict table + eli5 + HEDE-MEMO memory format), self-contained with zero dependencies |
 | `hede-bench.html` | A single page for human readers: beginner-friendly diagrams + real-world test scorecard, with EN/中文 language toggle (viewable on open, can be hosted on a website) |
-| `poster-prompt.md` | AI image-generation prompts for the promotional poster (base-image prompt + list of copy to overlay) |
 | `poster.jpg` | The finished promotional poster image |
 | `README.md` | This file (bilingual: English + 中文) |
 
@@ -96,7 +95,6 @@ Hede Language is the proper name of the language specification; `hede-thinking` 
 |---|---|
 | `SKILL.md` | **主体**：合德语思考 skill 完整规范（v2.1，含定论表 + eli5 + HEDE-MEMO 记忆格式），自包含零依赖 |
 | `hede-bench.html` | 给人看的单页：小白图解 + 实测成绩单，支持中英语言切换（打开即看，可挂官网） |
-| `poster-prompt.md` | 宣传海报的 AI 生图提示词（底图提示词 + 待叠文案清单） |
 | `poster.jpg` | 成品宣传海报图 |
 | `README.md` | 本文件（中英双语） |
 
