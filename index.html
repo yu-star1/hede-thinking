@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hede Language · Teach Your AI to Think Logically</title>
+<style>
+  :root{
+    --ink:#1c2333; --sub:#5a6478; --line:#e4e8f2; --bg:#f6f8fc;
+    --blue:#3d5ef2; --purple:#8a4df0; --grad:linear-gradient(120deg,#3d5ef2,#8a4df0);
+    --ok:#0e9f6e; --warn:#d97706;
+    --card:#ffffff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Microsoft YaHei","PingFang SC","Segoe UI",sans-serif;color:var(--ink);background:var(--bg);line-height:1.75}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+  /* Hero */
+  .hero{background:linear-gradient(135deg,#101c3f 0%,#1e2a5e 55%,#3a2a7a 100%);color:#fff;padding:72px 0 64px;text-align:center}
+  .hero h1{font-size:44px;letter-spacing:2px;margin-bottom:10px}
+  .hero h1 .en{display:block;font-size:18px;font-weight:400;letter-spacing:6px;opacity:.75;margin-top:8px}
+  .hero p.tagline{font-size:19px;opacity:.92;margin:18px auto 6px;max-width:720px}
+  .hero p.sub{font-size:14px;opacity:.6}
+  .badges{margin-top:30px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .badge{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.22);border-radius:14px;padding:12px 20px;font-size:15px}
+  .badge b{font-size:22px;margin-right:8px}
+  .hero-cta{margin-top:30px;font-size:14px;opacity:.8}
+
+  /* Sections */
+  section{padding:56px 0}
+  section:nth-of-type(even){background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  h2{font-size:28px;margin-bottom:8px;text-align:center}
+  h2 .hl{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sec-sub{text-align:center;color:var(--sub);font-size:15px;margin-bottom:36px}
+
+  /* Problem cards */
+  .grid{display:grid;gap:18px}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g4{grid-template-columns:repeat(4,1fr)}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:860px){.g3,.g4{grid-template-columns:repeat(2,1fr)}.g2{grid-template-columns:1fr}}
+  @media(max-width:560px){.g3,.g4{grid-template-columns:1fr}}
+  .pcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+  .pcard .bad{color:#c2410c;font-weight:600;font-size:15px}
+  .pcard .fix{color:var(--ok);font-size:14px;margin-top:6px}
+  .pcard .fix::before{content:"→ ";font-weight:700}
+
+  /* Compare */
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:8px}
+  @media(max-width:860px){.compare{grid-template-columns:1fr}}
+  .bubble{border-radius:14px;padding:20px 22px;font-size:14.5px}
+  .bubble h4{font-size:15px;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .bubble.bad{background:#fdf1ec;border:1px solid #f3cdbd;color:#7c2d12}
+  .bubble.bad h4{color:#c2410c}
+  .bubble.good{background:#eef4ff;border:1px solid #ccd9fb}
+  .bubble.good h4{color:var(--blue)}
+  .bubble .tagline-tag{font-weight:700}
+  .bubble pre{white-space:pre-wrap;font-family:inherit;margin:0}
+  .eli5box{margin-top:22px;background:#f0fdf7;border:1px solid #b7e6cd;border-radius:14px;padding:18px 22px;font-size:14.5px}
+  .eli5box b.t{color:var(--ok)}
+
+  /* Bench cards */
+  .bcard{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px 22px;text-align:center;position:relative;overflow:hidden}
+  .bcard::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--grad)}
+  .bcard .num{font-size:34px;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1.2}
+  .bcard .lab{font-size:15px;font-weight:700;margin-top:8px}
+  .bcard .note{font-size:12.5px;color:var(--sub);margin-top:8px;line-height:1.6}
+
+  /* Steps */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:860px){.steps{grid-template-columns:1fr}}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px}
+  .step .lv{display:inline-block;font-size:12px;font-weight:700;color:#fff;background:var(--grad);border-radius:20px;padding:3px 14px;margin-bottom:10px}
+  .step h4{font-size:16px;margin-bottom:6px}
+  .step p{font-size:13.5px;color:var(--sub)}
+  .step .time{font-size:12px;color:var(--purple);font-weight:700;margin-top:8px}
+
+  /* Criteria */
+  .crit{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 26px;font-size:14.5px}
+  .crit li{margin:7px 0 7px 18px}
+  .crit .j{font-weight:700;color:var(--purple)}
+
+  /* Copy box */
+  .copybox textarea{width:100%;min-height:210px;background:#101c3f;color:#dce6ff;border:1px solid #2c3d78;border-radius:14px;padding:18px;font-family:Consolas,Menlo,monospace;font-size:13px;line-height:1.7;resize:vertical}
+  .copybtn{margin-top:12px;background:var(--grad);color:#fff;border:none;border-radius:10px;padding:11px 30px;font-size:15px;font-weight:700;cursor:pointer}
+  .copybtn:hover{opacity:.9}
+  .copytip{font-size:12.5px;color:var(--sub);margin-top:8px}
+
+  /* Poster slot */
+  .poster{border:2px dashed #b9c4e0;border-radius:16px;min-height:300px;display:flex;align-items:center;justify-content:center;color:var(--sub);font-size:15px;background:#eef1f9;text-align:center;padding:30px}
+
+  footer{background:#101c3f;color:#8fa0cc;text-align:center;font-size:13px;padding:26px 0}
+  footer b{color:#dce6ff}
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<div class="hero">
+  <div class="wrap">
+    <h1>Hede Language<span class="en">HEDE LANGUAGE</span></h1>
+    <p class="tagline">A skill that teaches your (any) AI to think logically: <b>every conclusion is verifiable, failures are reported honestly, experience accumulates, and it can speak in plain language.</b></p>
+    <p class="sub">Works with any LLM / coding agent / multi-agent system · one-file integration · zero dependencies</p>
+    <div class="badges">
+      <div class="badge"><b>📌</b>Every assertion needs an anchor</div>
+      <div class="badge"><b>🔍</b>Every to-verify must close the loop</div>
+      <div class="badge"><b>📚</b>Every new fact gets recorded</div>
+      <div class="badge"><b>⚡</b>Every action gets written back</div>
+    </div>
+    <p class="hero-cta">↓ Get started in three minutes: copy a prompt, or install a skill file ↓</p>
+  </div>
+</div>
+
+<!-- ============ Problems ============ -->
+<section>
+  <div class="wrap">
+    <h2>AI's <span class="hl">six chronic problems</span>, and how Hede Language fixes each one</h2>
+    <p class="sec-sub">You've seen these scenarios before—the problem isn't a dumb model, it's the lack of "speaking discipline"</p>
+    <div class="grid g3">
+      <div class="pcard"><div class="bad">Vagueness</div>You can't tell which statements are certain and which are guesses<div class="fix">Behavior tags: show your cards first in every paragraph 📌🔍📚⚡</div></div>
+      <div class="pcard"><div class="bad">Unverifiable fabrication</div>"I've verified it"—and then nothing follows<div class="fix">Every assertion needs an anchor: reading / number / path</div></div>
+      <div class="pcard"><div class="bad">Long-conversation derailment</div>Referenced content gets restated over and over, growing more wrong with each copy<div class="fix">Reference-number citation: give the number, don't recite the original</div></div>
+      <div class="pcard"><div class="bad">Failures dressed up in spin</div>"Basically done" "Generally compliant"...<div class="fix">Close out negative results honestly: FAIL is a result too</div></div>
+      <div class="pcard"><div class="bad">Done but incomprehensible</div>A barrage of jargon hits you, and you still need three follow-up rounds<div class="fix">eli5 plain-language version: translate conclusions into everyday wording</div></div>
+      <div class="pcard"><div class="bad">Forgetfulness after chatting</div>What you taught it gets reset to zero in the next session<div class="fix">HEDE-MEMO recording: three-level memory adaptation</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Comparison example ============ -->
+<section>
+  <div class="wrap">
+    <h2>At a glance: <span class="hl">two ways of thinking</span> about the same small task</h2>
+    <p class="sec-sub">Task: "Help me check whether this batch of accounts is correct"</p>
+    <div class="compare">
+      <div class="bubble bad">
+        <h4>😵 Without Hede Language</h4>
+        <pre>I have completed a comprehensive analysis of this batch of accounts and carefully
+verified all the data. After rigorous checking, there are no problems with the
+accounts overall; the data maintains good consistency, the conclusion is reliable,
+and you can rest assured.</pre>
+      </div>
+      <div class="bubble good">
+        <h4>🧠 Hede Thinking</h4>
+        <pre><span class="tagline-tag">📌</span> Reconciliation complete: 47 rows of accounts sum to zero difference (reading:
+   reconciliation output total=0)
+<span class="tagline-tag">🔍</span> Spot-checked 3 large records → each matched to the original
+   vouchers one by one (voucher numbers 1021 / 1044 / 1087)
+<span class="tagline-tag">📌</span>〔inference〕One February entry of 88,000 yuan appears to be a
+   duplicate entry; original documents to-verify
+<span class="tagline-tag">⚡</span> Produced reconciliation table report.csv, with line-by-line details</pre>
+      </div>
+    </div>
+    <div class="eli5box">
+      <b class="t">💬 In plain language (type "plain-language version" or "$eli5" to trigger):</b>
+      The accounts were checked from start to finish, not a penny off; three large entries were sampled and all matched the original documents; only one February entry of 88,000 appears to be a duplicate—not yet verified, so I've flagged it for you first.
+    </div>
+    <p class="sec-sub" style="margin-top:26px">The "rest assured" on the left is exactly where hallucinations love to hide; every sentence on the right can be traced to the bottom via its anchor.</p>
+  </div>
+</section>
+
+<!-- ============ Benchmarks ============ -->
+<section>
+  <div class="wrap">
+    <h2>Measured <span class="hl">report card</span></h2>
+    <p class="sec-sub">All figures come from measurements against a pre-registered criteria sheet (success criteria locked in before the experiment to prevent after-the-fact patching)—including cost, presented honestly</p>
+    <div class="grid g4">
+      <div class="bcard"><div class="num">100%</div><div class="lab">Structure compliance rate</div><div class="note">4/4 pilot tasks fully compliant (threshold ≥80%), tags present and semantically matching</div></div>
+      <div class="bcard"><div class="num">4/4</div><div class="lab">Zero rework at acceptance</div><div class="note">All tasks passed acceptance on the first try, with no rework or errors caused by the thinking format</div></div>
+      <div class="bcard"><div class="num">12/12</div><div class="lab">Perfect machine blind test</div><div class="note">Blind test by another AI: skeleton parsing 4/4 (all fail with skeleton removed) · superior interpretation 4/4 · unsupported-assertion detection 4/4</div></div>
+      <div class="bcard"><div class="num">41.9→94.4%</div><div class="lab">With vs. without the specification</div><div class="note">Structure compliance without the spec loaded: 41.88% (MiniMax measurement, 27 windows with zero tags); after loading the spec: 94.40% (GLM)—discipline comes from loading it, not from the model's own consistency</div></div>
+      <div class="bcard"><div class="num">0→5/5</div><div class="lab">Opening-language fix</div><div class="note">The problem of thinking opening in drifting English—after adding the skeleton reminder, Chinese openings 5/5</div></div>
+      <div class="bcard"><div class="num">11× / 90×</div><div class="lab">Citation saves volume</div><div class="note">Reference-number citation saves about 11× compared with restating whole passages; a systematic citation scheme saves about 90×, with 100% archive equivalence</div></div>
+      <div class="bcard"><div class="num">PASS</div><div class="lab">User final review</div><div class="note">Readability personally spot-checked and judged by the user (AI may not judge on its behalf): "the tags are very vivid"</div></div>
+      <div class="bcard"><div class="num">+3 tok/line</div><div class="lab">Cost accounted for honestly</div><div class="note">Overall increase &lt;5%—what it saves isn't tokens, it's the cost of trust; the content-word compression route was disproven in all four rounds of experiments, archived—do not retry</div></div>
+    </div>
+    <p class="sec-sub" style="margin-top:24px">Honest disclaimer: the precise two-arm controlled trial for "percentage reduction in fabrication rate" is still underway—what Hede Language can promise today is: <b>every assertion carries an anchor, and fabrication can be detected on the spot</b> (unsupported-assertion detection 4/4 in the machine blind test).</p>
+  </div>
+</section>
+
+<!-- ============ Onboarding tiers ============ -->
+<section>
+  <div class="wrap">
+    <h2>Three levels of integration: <span class="hl">from 5 minutes to engineering grade</span></h2>
+    <p class="sec-sub">Any AI, any host, has a clear entry point</p>
+    <div class="steps">
+      <div class="step"><span class="lv">Level 1 · Minimal onboarding</span><h4>Paste a prompt</h4><p>Paste the entire "minimal onboarding package" into your AI's custom instructions / System Prompt. Takes effect immediately with zero code; even an AI without memory facilities will output a standard MEMO block at closing.</p><div class="time">⏱ 5 minutes · any AI</div></div>
+      <div class="step"><span class="lv">Level 2 · Automatic reminders</span><h4>Attach an injection script</h4><p>When the host supports a hooks-like mechanism, gently nudge a skeleton reminder on each user message (first 3 messages of a session + 30-minute throttle). Prevents forgetting in long conversations; stacks with Level 1.</p><div class="time">⏱ Half an hour · requires hooks</div></div>
+      <div class="step"><span class="lv">Level 3 · Engineering grade</span><h4>Build it into the governance layer</h4><p>Output gates that block assertions without anchors, a reference-number registry, automatic closing-reconciliation checks, recording-format validation and duplicate merging—unified discipline for multi-agent systems.</p><div class="time">⏱ As needed · multi-agent</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Self-verification criteria ============ -->
+<section>
+  <div class="wrap">
+    <h2>Don't trust the ads—<span class="hl">verify it yourself with five criteria</span></h2>
+    <p class="sec-sub">Swap in any model, connect to any host, and run it once (lock in the standards before you run)</p>
+    <div class="crit">
+      <li><span class="j">J1 Compliance rate</span>: ≥80% of pilot-task thinking segments organized per the specification (tags present and semantically matching)</li>
+      <li><span class="j">J2 No quality regression</span>: first-pass acceptance rate no worse than baseline, with no rework caused by the thinking format</li>
+      <li><span class="j">J3 Honest volume</span>: direction and magnitude of the tag overhead recorded honestly (expected slightly positive, no threshold set)</li>
+      <li><span class="j">J4 User final review</span>: readability subjectively judged by the user through personal spot-checks (AI may not judge on its behalf)</li>
+      <li><span class="j">J5 Self-check after model swap</span>: after every model change, first-window measured skeleton compliance ≥0.80 and tag line count &gt;0 counts as PASS—measurements prove that "compliance rate = model × whether the spec is loaded" is a product</li>
+    </div>
+    <p class="sec-sub" style="margin-top:20px">Verdict rule: J1∧J2∧J4 all pass = viable; judge once a sample of 3-5 tasks is complete; archive FAIL honestly, no changing thresholds to game the numbers.</p>
+  </div>
+</section>
+
+<!-- ============ Copy onboarding package ============ -->
+<section>
+  <div class="wrap">
+    <h2><span class="hl">Copy and use immediately</span>: minimal onboarding package</h2>
+    <p class="sec-sub">Copy the whole thing, paste into your AI's custom instructions / System Prompt, and it takes effect as soon as you save</p>
+    <div class="copybox">
+      <textarea id="prompt-pkg">【Thinking and Expression Specification: Hede Language Skeleton】
+1. Put a behavior tag at the start of every paragraph of the thinking process: 📌 assertion (must carry an anchor: reading / number / path; if no anchor, mark 〔inference〕); 🔍 to-verify (must close the loop before closing out); 📚 to-record (record according to the memory-adaptation level, or note that it will not be recorded); ⚡ action (must write back the result). One thought, one tag.
+2. Use a numeric line for status progress: state: {n, done, pct}; use reference-number citation for pointing the way (→number), and do not restate content already referenced.
+3. Express the main text fully in Simplified Chinese; no whole paragraphs of English thinking (except code, code names, and proper nouns).
+4. Every task ending must include a closing-reconciliation section: 📌 anchor count / 🔍 loop closure / 📚 recording list / ⚡ write-backs—only when all four lines are checked off is the task closed out.
+5. Multi-step tasks end with a verdict table: | # | What you asked me to do | Result and evidence | Status |—one row of result per requirement, each result must carry a verifiable anchor, and the four status values ✅⚠️⛔🔄 must be honest.
+6. When I say "plain-language version/$eli5", produce a plain-language version: translate the conclusions into everyday wording (write the three states honestly: already present / added / on hold), and provide the three-piece deliverable rundown (name / location / one-line summary); no piling up jargon.
+7. Report failures honestly; test failures / skips / unverified items must be stated explicitly—no dressing them up in success language.
+8. Recording discipline: things that need remembering must be recorded in HEDE-MEMO format—four frontmatter fields (name: short hyphenated English name / description: one-line summary / type: user|feedback|project|reference) plus a body (feedback/project items include Why and How to apply, with related entries interlinked via [[name]]). If you have memory tools, use them; if you have a filesystem, write to the hede_memos/ directory (one md per entry + INDEX.md with one index line per entry); if you have neither, output a MEMO code block in the closing section for me to store on your behalf. Anything I have corrected you on must be recorded as feedback; existing memories on the same topic must only be updated, not duplicated.</textarea>
+      <button class="copybtn" onclick="copyPkg()">📋 Copy in one click</button>
+      <div class="copytip">Paste and save → open a new chat → toss it a small task and see whether it starts attaching 📌🔍📚⚡. For the full specification (including three-level memory adaptation, glossary, and criteria), see SKILL.md.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Poster slot ============ -->
+<section>
+  <div class="wrap">
+    <h2><span class="hl">Promotional poster</span></h2>
+    <p class="sec-sub">The following is the poster slot (when deploying to the website, replace this spot with the poster image poster.png; see poster-prompt.md for the image-generation prompt)</p>
+    <div class="poster" id="poster-slot">
+      🖼 Poster slot placeholder<br><small>Replace at deployment with &lt;img src="poster.png" alt="Hede Language promotional poster"&gt;</small>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <b>Hede Thinking skill v2.1</b> · 2026-11-20 · self-contained, zero dependencies · works with any LLM agent<br>
+    All figures come from measurements against a pre-registered criteria sheet · this page can be deployed as a single file to any static site
+  </div>
+</footer>
+
+<script>
+function copyPkg(){
+  var t=document.getElementById('prompt-pkg');
+  t.select();t.setSelectionRange(0,999999);
+  var ok=false;
+  try{ok=document.execCommand('copy');}catch(e){ok=false;}
+  if(!ok&&navigator.clipboard){navigator.clipboard.writeText(t.value);ok=true;}
+  var b=document.querySelector('.copybtn');
+  b.textContent=ok?'✅ Copied—go paste it':'Please select and copy manually';
+  setTimeout(function(){b.textContent='📋 Copy to clipboard';},2200);
+}
+</script>
+</body>
+</html>
